@@ -15,7 +15,7 @@ const EmployersList = ({ data }: any) => {
         name={item.name}
         salary={item.salary}
         key={item.id}
-        increase
+        increase={item.increase}
       />
     );
   });

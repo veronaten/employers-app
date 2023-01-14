@@ -1,9 +1,19 @@
 import { EmployersListDataType } from "../employersList/EmployersList";
 import "./EmployersListItem.css";
 
-const EmployersListItem = ({ name, salary }: EmployersListDataType) => {
+const EmployersListItem = ({
+  name,
+  salary,
+  increase,
+}: EmployersListDataType) => {
   return (
-    <li className="list-group-item d-flex justify-content-between">
+    <li
+      className={
+        increase
+          ? "list-group-item increase d-flex justify-content-between"
+          : "list-group-item d-flex justify-content-between"
+      }
+    >
       <span className="list-group-item-label">{name}</span>
       <input
         type="text"
