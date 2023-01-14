@@ -1,14 +1,25 @@
 import EmployersListItem from "../employersListItem/EmployersListItem";
 import "./EmployersList.css";
 
-const EmployersList = () => {
-  return (
-    <ul className="app-list list-group">
-      <EmployersListItem />
-      <EmployersListItem />
-      <EmployersListItem />
-    </ul>
-  );
+export interface EmployersListDataType {
+  id?: string;
+  name: string;
+  salary: string;
+  increase: boolean;
+}
+
+const EmployersList = ({ data }: any) => {
+  const employes = data.map((item: any) => {
+    return (
+      <EmployersListItem
+        name={item.name}
+        salary={item.salary}
+        key={item.id}
+        increase
+      />
+    );
+  });
+  return <ul className="app-list list-group">{employes}</ul>;
 };
 
 export default EmployersList;

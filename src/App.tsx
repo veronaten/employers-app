@@ -7,6 +7,12 @@ import Info from "./components/info/Info";
 import SearchPanel from "./components/searchPanel/SearchPanel";
 
 function App() {
+  const data = [
+    { id: "1", name: "John", salary: "1000", increase: false },
+    { id: "2", name: "Veronika", salary: "7000", increase: true },
+    { id: "3", name: "Denis", salary: "15000", increase: true },
+    { id: "4", name: "Kirill", salary: "3000", increase: false },
+  ];
   return (
     <div className="app">
       <Info />
@@ -14,7 +20,7 @@ function App() {
         <SearchPanel />
         <Filter />
       </div>
-      <EmployersList />
+      <EmployersList data={data} />
       <EmployersForm />
     </div>
   );
