@@ -53,14 +53,7 @@ class EmployersListItem extends React.Component<
     }
 
     return (
-      <li
-        className={classNames}
-        // className={
-        //   increase
-        //     ? "list-group-item increase d-flex justify-content-between"
-        //     : "list-group-item d-flex justify-content-between"
-        // }
-      >
+      <li className={classNames}>
         <span
           className={
             like ? "list-group-item-label like" : "list-group-item-label"
