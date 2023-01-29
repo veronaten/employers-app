@@ -9,7 +9,7 @@ export interface EmployersListDataType {
 }
 
 const EmployersList = ({ data }: any) => {
-  const employes = data.map((item: any) => {
+  const employes = data.map((item: EmployersListDataType) => {
     return (
       <EmployersListItem
         name={item.name}
@@ -19,6 +19,8 @@ const EmployersList = ({ data }: any) => {
       />
     );
   });
+
+  console.log(employes);
   return <ul className="app-list list-group">{employes}</ul>;
 };
 
