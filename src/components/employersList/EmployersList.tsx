@@ -20,7 +20,6 @@ const EmployersList = ({ data }: any) => {
     );
   });
 
-  console.log(employes);
   return <ul className="app-list list-group">{employes}</ul>;
 };
 

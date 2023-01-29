@@ -10,6 +10,7 @@ interface EmployersListItemProps {
 
 interface EmployeesListItemState {
   increase: boolean;
+  like: boolean;
 }
 
 class EmployersListItem extends React.Component<
@@ -22,6 +23,7 @@ class EmployersListItem extends React.Component<
     super(props);
     this.state = {
       increase: false,
+      like: false,
     };
   }
 
@@ -31,19 +33,42 @@ class EmployersListItem extends React.Component<
     }));
   };
 
+  addLike = () => {
+    this.setState(({ like }) => ({
+      like: !like,
+    }));
+  };
+
   render() {
     const { name, salary } = this.props;
-    const { increase } = this.state;
+    const { increase, like } = this.state;
+
+    let classNames = `list-group-item d-flex justify-content-between`;
+    if (increase) {
+      classNames += ` increase`;
+    }
+
+    if (like) {
+      classNames += ` like`;
+    }
 
     return (
       <li
-        className={
-          increase
-            ? "list-group-item increase d-flex justify-content-between"
-            : "list-group-item d-flex justify-content-between"
-        }
+        className={classNames}
+        // className={
+        //   increase
+        //     ? "list-group-item increase d-flex justify-content-between"
+        //     : "list-group-item d-flex justify-content-between"
+        // }
       >
-        <span className="list-group-item-label">{name}</span>
+        <span
+          className={
+            like ? "list-group-item-label like" : "list-group-item-label"
+          }
+          onClick={this.addLike}
+        >
+          {name}
+        </span>
         <input
           type="text"
           className="list-group-item-input"
