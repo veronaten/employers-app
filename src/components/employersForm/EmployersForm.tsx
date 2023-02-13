@@ -14,13 +14,22 @@ class EmployersForm extends React.Component<{}, EmployersFormState> {
     };
   }
 
-  inputChangeHandler = (e: {
+  inputNameChangeHandler = (e: {
     preventDefault: () => void;
     target: { value: any };
   }) => {
     e.preventDefault();
     this.setState({
       name: e.target.value,
+    });
+  };
+
+  inputSalaryChangeHandler = (e: {
+    preventDefault: () => void;
+    target: { value: any };
+  }) => {
+    e.preventDefault();
+    this.setState({
       salary: e.target.value,
     });
   };
@@ -35,7 +44,7 @@ class EmployersForm extends React.Component<{}, EmployersFormState> {
             type="text"
             className="form-control new-post-label"
             placeholder="What is his name?"
-            onChange={this.inputChangeHandler}
+            onChange={this.inputNameChangeHandler}
             value={name}
           />
           <input
@@ -43,6 +52,7 @@ class EmployersForm extends React.Component<{}, EmployersFormState> {
             className="form-control new-post-label"
             placeholder="Salary in $?"
             value={salary}
+            onChange={this.inputSalaryChangeHandler}
           />
 
           <button type="submit" className="btn btn-outline-light">
