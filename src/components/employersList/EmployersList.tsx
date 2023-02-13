@@ -6,9 +6,10 @@ export interface EmployersListDataType {
   name: string;
   salary: string;
   increase: boolean;
+  onDelete?: () => void;
 }
 
-const EmployersList = ({ data }: any) => {
+const EmployersList = ({ data, onDelete }: any) => {
   const employes = data.map((item: EmployersListDataType) => {
     return (
       <EmployersListItem
@@ -16,6 +17,7 @@ const EmployersList = ({ data }: any) => {
         salary={item.salary}
         key={item.id}
         increase={item.increase}
+        onDelete={() => onDelete(item.id)}
       />
     );
   });

@@ -5,8 +5,15 @@ interface EmployersFormState {
   name: string;
   salary: string;
 }
-class EmployersForm extends React.Component<{}, EmployersFormState> {
-  constructor(props: {} | Readonly<{}>) {
+
+interface EmployersFormProps {
+  addNewEmployee: () => void;
+}
+class EmployersForm extends React.Component<
+  EmployersFormProps,
+  EmployersFormState
+> {
+  constructor(props: EmployersFormProps) {
     super(props);
     this.state = {
       name: "",
@@ -44,6 +51,7 @@ class EmployersForm extends React.Component<{}, EmployersFormState> {
 
   render() {
     const { name, salary } = this.state;
+    const addNewEmployee = this.props;
     return (
       <div className="app-add-form">
         <h3>Add a new employee</h3>

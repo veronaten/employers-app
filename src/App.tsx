@@ -13,6 +13,15 @@ function App() {
     { id: "3", name: "Denis", salary: "15000", increase: true },
     { id: "4", name: "Kirill", salary: "3000", increase: false },
   ];
+
+  const addNewEmployee = (obj: any) => {
+    const employee = {
+      id: "5",
+      name: obj.name,
+      salary: obj.salary,
+      increase: false,
+    };
+  };
   return (
     <div className="app">
       <Info />
@@ -20,8 +29,8 @@ function App() {
         <SearchPanel />
         <Filter />
       </div>
-      <EmployersList data={data} />
-      <EmployersForm />
+      <EmployersList data={data} onDelete={(id: string) => console.log(id)} />
+      <EmployersForm addNewEmployee={() => addNewEmployee({})} />
     </div>
   );
 }
