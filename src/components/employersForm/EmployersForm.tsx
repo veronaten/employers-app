@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import "./EmployersForm.css";
 
 interface EmployersFormState {
@@ -34,12 +34,20 @@ class EmployersForm extends React.Component<{}, EmployersFormState> {
     });
   };
 
+  addNewEmployee = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("new employee", {
+      name: this.state.name,
+      salary: this.state.salary,
+    });
+  };
+
   render() {
     const { name, salary } = this.state;
     return (
       <div className="app-add-form">
         <h3>Add a new employee</h3>
-        <form className="add-form d-flex">
+        <form className="add-form d-flex" onSubmit={this.addNewEmployee}>
           <input
             type="text"
             className="form-control new-post-label"
