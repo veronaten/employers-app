@@ -6,7 +6,17 @@ import Filter from "./components/filter/Filter";
 import Info from "./components/info/Info";
 import SearchPanel from "./components/searchPanel/SearchPanel";
 
-class App extends React.Component {
+interface AppStateType {
+  data: DataType[];
+}
+
+interface DataType {
+  id: string;
+  name: string;
+  salary: string;
+  increase: boolean;
+}
+class App extends React.Component<{}, AppStateType> {
   constructor(props: {} | Readonly<{}>) {
     super(props);
     this.state = {
@@ -19,6 +29,12 @@ class App extends React.Component {
     };
   }
 
+  deleteEmployee = (id: string) => {
+    this.setState({
+      data: this.state.data.filter((item) => item.id !== id),
+    });
+  };
+
   render() {
     const data = this.state.data;
     return (
@@ -28,7 +44,7 @@ class App extends React.Component {
           <SearchPanel />
           <Filter />
         </div>
-        <EmployersList data={data} onDelete={(id: string) => console.log(id)} />
+        <EmployersList data={data} onDelete={this.deleteEmployee} />
         <EmployersForm addNewEmployee={() => console.log("Add Employee")} />
       </div>
     );
