@@ -7,7 +7,7 @@ interface EmployersFormState {
 }
 
 interface EmployersFormProps {
-  addNewEmployee: () => void;
+  addNewEmployee: (obj: any) => void;
 }
 class EmployersForm extends React.Component<
   EmployersFormProps,
@@ -41,13 +41,13 @@ class EmployersForm extends React.Component<
     });
   };
 
-  addNewEmployee = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("new employee", {
-      name: this.state.name,
-      salary: this.state.salary,
-    });
-  };
+  // addNewEmployee = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   console.log("new employee", {
+  //     name: this.state.name,
+  //     salary: this.state.salary,
+  //   });
+  // };
 
   render() {
     const { name, salary } = this.state;
@@ -55,7 +55,13 @@ class EmployersForm extends React.Component<
     return (
       <div className="app-add-form">
         <h3>Add a new employee</h3>
-        <form className="add-form d-flex" onSubmit={this.addNewEmployee}>
+        <form
+          className="add-form d-flex"
+          onSubmit={(e) => {
+            e.preventDefault();
+            return addNewEmployee;
+          }}
+        >
           <input
             type="text"
             className="form-control new-post-label"

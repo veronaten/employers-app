@@ -35,6 +35,10 @@ class App extends React.Component<{}, AppStateType> {
     });
   };
 
+  addEmployee = (obj: any) => {
+    console.log("Add Employee >>>", obj);
+  };
+
   render() {
     const data = this.state.data;
     return (
@@ -45,7 +49,7 @@ class App extends React.Component<{}, AppStateType> {
           <Filter />
         </div>
         <EmployersList data={data} onDelete={this.deleteEmployee} />
-        <EmployersForm addNewEmployee={() => console.log("Add Employee")} />
+        <EmployersForm addNewEmployee={this.addEmployee} />
       </div>
     );
   }
