@@ -1,11 +1,11 @@
 import React from "react";
-import { threadId } from "worker_threads";
-import "./App.css";
 import EmployersForm from "./components/employersForm/EmployersForm";
 import EmployersList from "./components/employersList/EmployersList";
 import Filter from "./components/filter/Filter";
 import Info from "./components/info/Info";
 import SearchPanel from "./components/searchPanel/SearchPanel";
+
+import "./App.css";
 
 interface AppStateType {
   data: DataType[];
@@ -37,7 +37,8 @@ class App extends React.Component<{}, AppStateType> {
   };
 
   addEmployee = (name: string, salary: string) => {
-    const randomId = Math.ceil(Math.random());
+    const { v4: uuidv4 } = require("uuid");
+    const randomId = uuidv4;
     const newData = [
       ...this.state.data,
       { id: randomId.toString(), name: name, salary: salary, increase: true },
