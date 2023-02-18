@@ -1,4 +1,5 @@
 import React from "react";
+import { threadId } from "worker_threads";
 import "./App.css";
 import EmployersForm from "./components/employersForm/EmployersForm";
 import EmployersList from "./components/employersList/EmployersList";
@@ -35,8 +36,14 @@ class App extends React.Component<{}, AppStateType> {
     });
   };
 
-  addEmployee = (obj: any) => {
-    console.log("Add Employee >>>", obj);
+  addEmployee = (name: string, salary: string) => {
+    const randomId = Math.ceil(Math.random());
+    const newData = [
+      ...this.state.data,
+      { id: randomId.toString(), name: name, salary: salary, increase: true },
+    ];
+    console.log(newData);
+    this.setState({ data: newData });
   };
 
   render() {
