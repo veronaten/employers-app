@@ -38,7 +38,8 @@ class App extends React.Component<{}, AppStateType> {
 
   addEmployee = (name: string, salary: string) => {
     const { v4: uuidv4 } = require("uuid");
-    const randomId = uuidv4;
+    const randomId = uuidv4();
+
     const newData = [
       ...this.state.data,
       { id: randomId.toString(), name: name, salary: salary, increase: true },
