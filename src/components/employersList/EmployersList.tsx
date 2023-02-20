@@ -6,10 +6,18 @@ export interface EmployersListDataType {
   name: string;
   salary: string;
   increase: boolean;
+  like: boolean;
   onDelete?: () => void;
+  onToggleIncrease?: () => void;
+  onAddLike?: () => void;
 }
 
-const EmployersList = ({ data, onDelete }: any) => {
+const EmployersList = ({
+  data,
+  onDelete,
+  onToggleIncrease,
+  onAddLike,
+}: any) => {
   const employes = data.map((item: EmployersListDataType) => {
     return (
       <EmployersListItem
@@ -17,7 +25,10 @@ const EmployersList = ({ data, onDelete }: any) => {
         salary={item.salary}
         key={item.id}
         increase={item.increase}
+        like={item.like}
         onDelete={() => onDelete(item.id)}
+        onToggleIncrease={() => onToggleIncrease(item.id)}
+        onAddLike={() => onAddLike(item.id)}
       />
     );
   });

@@ -16,16 +16,35 @@ interface DataType {
   name: string;
   salary: string;
   increase: boolean;
+  like: boolean;
 }
 class App extends React.Component<{}, AppStateType> {
   constructor(props: {} | Readonly<{}>) {
     super(props);
     this.state = {
       data: [
-        { id: "1", name: "John", salary: "1000", increase: false },
-        { id: "2", name: "Veronika", salary: "7000", increase: true },
-        { id: "3", name: "Denis", salary: "15000", increase: true },
-        { id: "4", name: "Kirill", salary: "3000", increase: false },
+        { id: "1", name: "John", salary: "1000", increase: false, like: true },
+        {
+          id: "2",
+          name: "Veronika",
+          salary: "7000",
+          increase: true,
+          like: false,
+        },
+        {
+          id: "3",
+          name: "Denis",
+          salary: "15000",
+          increase: true,
+          like: false,
+        },
+        {
+          id: "4",
+          name: "Kirill",
+          salary: "3000",
+          increase: false,
+          like: false,
+        },
       ],
     };
   }
@@ -42,10 +61,24 @@ class App extends React.Component<{}, AppStateType> {
 
     const newData = [
       ...this.state.data,
-      { id: randomId.toString(), name: name, salary: salary, increase: true },
+      {
+        id: randomId.toString(),
+        name: name,
+        salary: salary,
+        increase: true,
+        like: true,
+      },
     ];
     console.log(newData);
     this.setState({ data: newData });
+  };
+
+  onToggleIncrease = (id: string) => {
+    console.log(`This toggleEncrease ${id}`);
+  };
+
+  onAddLike = (id: string) => {
+    console.log(`This addLike ${id}`);
   };
 
   render() {
@@ -57,7 +90,12 @@ class App extends React.Component<{}, AppStateType> {
           <SearchPanel />
           <Filter />
         </div>
-        <EmployersList data={data} onDelete={this.deleteEmployee} />
+        <EmployersList
+          data={data}
+          onDelete={this.deleteEmployee}
+          onToggleIncrease={this.onToggleIncrease}
+          onAddLike={this.onAddLike}
+        />
         <EmployersForm addNewEmployee={this.addEmployee} />
       </div>
     );
