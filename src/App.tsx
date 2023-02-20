@@ -74,7 +74,14 @@ class App extends React.Component<{}, AppStateType> {
   };
 
   onToggleIncrease = (id: string) => {
-    console.log(`This toggleEncrease ${id}`);
+    this.setState(({ data }) => ({
+      data: data.map((item) => {
+        if (item.id === id) {
+          return { ...item, increase: !item.increase };
+        }
+        return item;
+      }),
+    }));
   };
 
   onAddLike = (id: string) => {
