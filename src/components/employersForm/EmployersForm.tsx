@@ -72,7 +72,11 @@ class EmployersForm extends React.Component<
             onChange={this.inputSalaryChangeHandler}
           />
 
-          <button type="submit" className="btn btn-outline-light">
+          <button
+            type="submit"
+            className="btn btn-outline-light"
+            disabled={!name && !salary}
+          >
             Add
           </button>
         </form>
