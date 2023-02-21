@@ -85,14 +85,22 @@ class App extends React.Component<{}, AppStateType> {
   };
 
   onAddLike = (id: string) => {
-    console.log(`This addLike ${id}`);
+    this.setState(({ data }) => ({
+      data: data.map((item) => {
+        if (item.id === id) {
+          return { ...item, like: !item.like };
+        }
+        return item;
+      }),
+    }));
   };
 
   render() {
     const data = this.state.data;
+    const increaseEmployee = data.filter((item) => item.increase).length;
     return (
       <div className="app">
-        <Info />
+        <Info quantity={data.length} increaseEmployee={increaseEmployee} />
         <div className="search-panel">
           <SearchPanel />
           <Filter />
