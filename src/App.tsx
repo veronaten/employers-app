@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from "react";
 import EmployersForm from "./components/employersForm/EmployersForm";
 import EmployersList from "./components/employersList/EmployersList";
@@ -10,6 +11,7 @@ import "./App.css";
 interface AppStateType {
   data: DataType[];
   term: string;
+  filter: string;
 }
 
 interface DataType {
@@ -48,6 +50,7 @@ class App extends React.Component<{}, AppStateType> {
         },
       ],
       term: "",
+      filter: "all",
     };
   }
 
@@ -112,16 +115,33 @@ class App extends React.Component<{}, AppStateType> {
     });
   };
 
+  filterClick = (items: any, filter: string) => {
+    switch (filter) {
+      case "rise":
+        return items.filter((item: any) => item.like);
+      case "salary":
+        return items.filter((item: any) => item.salary > 1000);
+      default:
+        return items;
+    }
+  };
+
+  onFilterClick = (filter: string) => {
+    this.setState({ filter });
+  };
   render() {
-    const { data, term } = this.state;
-    const visibleData = this.filterEmployers(data, term);
+    const { data, term, filter } = this.state;
+    const visibleData = this.filterClick(
+      this.filterEmployers(data, term),
+      filter
+    );
     const increaseEmployee = data.filter((item) => item.increase).length;
     return (
       <div className="app">
         <Info quantity={data.length} increaseEmployee={increaseEmployee} />
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-          <Filter />
+          <Filter filter={filter} onFilterClick={this.onFilterClick} />
         </div>
         <EmployersList
           data={visibleData}
